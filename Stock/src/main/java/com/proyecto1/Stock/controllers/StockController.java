@@ -23,6 +23,12 @@ public class StockController {
         return stockService.findAll();
     }
 
+    @GetMapping("/available/{name}")
+    @ResponseStatus(HttpStatus.CONTINUE)
+    public boolean isAvailable(@PathVariable String name){
+        return stockService.isAvailable(name);
+    }
+
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Stock> findById(@PathVariable Long id){

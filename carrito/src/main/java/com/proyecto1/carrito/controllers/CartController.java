@@ -4,6 +4,7 @@ import com.proyecto1.carrito.DTOs.CartDTO;
 import com.proyecto1.carrito.entities.Cart;
 import com.proyecto1.carrito.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,11 @@ public class CartController {
     @PostMapping("/create")
     public Cart saveCart(@RequestBody Cart cart){
         return cartService.create(cart);
+    }
+
+    @PutMapping("/addProduct/{cart_id}")
+    public String addProduct(@PathVariable Long cart_id, @Param("name") String name){
+        return cartService.addProduct(cart_id, name);
     }
 
     @PutMapping("/update/{cart_id}")

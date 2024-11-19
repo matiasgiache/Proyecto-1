@@ -64,6 +64,15 @@ public class StockService {
         }
     }
 
+    public boolean isAvailable(String name){
+
+        if (findByName(name).isPresent()){
+            return findByName(name).get().getQuantity() > 0;
+        }else {
+            return false;
+        }
+    }
+
     public void delete(String code){
         Long id = findByCode(code).get().getId();
 
